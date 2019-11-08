@@ -1,0 +1,14 @@
+{
+	"manifest_version": 2,
+
+	"name": "Fanfic downloader",
+	"description": "Extension to automatically download fanfic file when fanfic page opens on Ao3 or ficbook.net",
+	"version": "1.1.1",
+	"content_scripts": [{
+    "matches": ["https://archiveofourown.org/works/*", "https://ficbook.net/readfic/*"],
+    "js": ["content.js"]
+  }],
+
+	"permissions": ["storage"],
+	"options_page": "options.html"
+}
