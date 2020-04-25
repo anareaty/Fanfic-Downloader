@@ -1,20 +1,32 @@
-chrome.storage.local.get(["Ao3", "FB", "extensionOn"], result => {
+chrome.storage.local.get(["Ao3Format", "FBFormat", "extensionOn"], result => {
   if (result.extensionOn != false) {
 
-  let Ao3 = result.Ao3;
-  let FB = result.FB;
-  if (Ao3 === undefined) Ao3 = true;
-  if (FB === undefined) FB = true;
+  let FBFormats = {1: "txt", 2: "epub", 3: "pdf", 4: "fb2"}
+  let FBFormat = FBFormats[result.FBFormat];
+  if (FBFormat === undefined) FBFormat = "epub";
 
-  if (/https:\/\/archiveofourown\.org.*/.test(location.href) && Ao3 == true) {
+  let Ao3Formats = {1: "azw3", 2: "epub", 3: "mobi", 4: "pdf", 5: "html"}
+  let Ao3Format = Ao3Formats[result.Ao3Format];
+  if (Ao3Format === undefined) Ao3Format = "epub";
+
+  if (/archiveofourown\.org.*/.test(location.href)) {
     document.querySelectorAll("h4.heading > a:first-child")
-    .forEach(a => window.open("https://archiveofourown.org/" + a.getAttribute("href"), '_blank'))
+    .forEach((a) => {
+      let number = a.getAttribute("href").replace("works", "");
+      let title = a.innerText;
+      let url = "https://archiveofourown.org/downloads" + number + "\/" + title + "\." + Ao3Format;
+      window.open(url, '_blank')
+    })
   }
 
-  if (/https:\/\/ficbook\.net.*/.test(location.href) && FB == true) {
+  if (/ficbook\.net.*/.test(location.href)) {
     document.querySelectorAll("a.visit-link")
-    .forEach(a => window.open("https://ficbook.net" + a.getAttribute("href"), '_blank'))
+    .forEach((a) => {
+      let url = "https://ficbook.net" + a.getAttribute("href").replace("readfic", "fanfic_download\/" + FBFormat);
+      window.open(url, '_blank')
+    })
   }
+
 
 }
 });

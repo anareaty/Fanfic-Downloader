@@ -1,17 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  chrome.storage.local.get(["Ao3", "FB", "Ao3Format", "FBFormat", "closeTabs"], result => {
-    if (result.Ao3 != false) {
+  chrome.storage.local.get(["Ao3", "FB", "Ao3Format", "FBFormat"], result => {
+    if (result.Ao3 == true) {
       document.getElementById("Ao3").checked = true;
-    }
-    if (result.FB != false) {
-      document.getElementById("FB").checked = true;
+    } else {
+      document.getElementById("Ao3").checked = false;
     }
 
-    if (result.closeTabs == true) {
-      document.getElementById("closeTabs").checked = true;
+    if (result.FB == true) {
+      document.getElementById("FB").checked = true;
     } else {
-      document.getElementById("closeTabs").checked = false;
+      document.getElementById("FB").checked = false;
     }
 
     if (result.Ao3Format != undefined) {
@@ -29,11 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("FB").onchange = () => {
     chrome.storage.local.set({
       "FB": document.getElementById("FB").checked})
-  }
-
-  document.getElementById("closeTabs").onchange = () => {
-    chrome.storage.local.set({
-      "closeTabs": document.getElementById("closeTabs").checked})
   }
 
   document.getElementById("Ao3-format").onclick = () => {

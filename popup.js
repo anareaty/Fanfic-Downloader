@@ -33,4 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
       file: "massdownload.js"
     });
   };
+
+  document.getElementById('downloadUpdates').onclick = () => {
+    chrome.tabs.executeScript({
+      file: "downloadUpdates.js"
+    });
+  };
+
+
+
 });

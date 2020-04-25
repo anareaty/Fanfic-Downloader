@@ -1,27 +1,24 @@
-chrome.storage.local.get(["Ao3", "FB", "Ao3Format", "FBFormat", "extensionOn", "closeTabs"], result => {
+chrome.storage.local.get(["Ao3", "FB", "Ao3Format", "FBFormat", "extensionOn"], result => {
   if (result.extensionOn != false) {
 
+    let FBFormats = {1: "txt", 2: "epub", 3: "pdf", 4: "fb2"}
+
     let Ao3Format = result.Ao3Format;
-    let FBFormat = result.FBFormat;
+    let FBFormat = FBFormats[result.FBFormat];
 
     if (Ao3Format === undefined) Ao3Format = 2;
-    if (FBFormat === undefined) FBFormat = 2;
+    if (FBFormat === undefined) FBFormat = "epub";
 
 
     //Форматы Ao3: 1-AZW3, 2-EPUB, 3-MOBI, 4-PDF, 5-HTML
-    if (/https:\/\/archiveofourown\.org.*/.test(location.href) && result.Ao3 != false) {
+    if (/archiveofourown\.org\/works.*/.test(location.href) && result.Ao3 == true) {
       location.href="https://archiveofourown.org/" +
       document.querySelector(".download > ul > li:nth-child(" + Ao3Format + ") > a")
       .getAttribute("href");
-      if (result.closeTabs == true) setTimeout(() => {window.close();}, 5000);
     }
 
-    //Форматы фикбука: 1-TXT, 2-EPUB, 3-PDF, 4-FB2
-    if (/https:\/\/ficbook\.net\/readfic.*/.test(location.href) && result.FB != false) {
-      location.href="https://ficbook.net" +
-      document.querySelector(".download-dropdown > ul > li:nth-child(" + FBFormat + ") > a")
-      .getAttribute("href");
-      if (result.closeTabs == true) setTimeout(() => {window.close();}, 5000);
+    if (/ficbook\.net\/readfic.*/.test(location.href) && result.FB == true) {
+    location.href = location.href.replace("readfic", "fanfic_download\/" + FBFormat)
     }
 
   }
