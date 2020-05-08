@@ -13,8 +13,7 @@ chrome.storage.local.get(["extensionOn", "lastUpdates"], result => {
 
             let link = a.querySelector("h4.heading > a:first-child")
             let number = link.getAttribute("href").replace("works", "");
-            let title = link.innerText;
-            let url = "https://archiveofourown.org/downloads" + number + "\/" + title + "\." + "epub";
+            let url = "https://archiveofourown.org/downloads" + number + "\/" + "download" + "\." + "epub";
             window.open(url, '_blank')
 
           } else {exit = true}

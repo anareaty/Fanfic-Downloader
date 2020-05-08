@@ -13,8 +13,7 @@ chrome.storage.local.get(["Ao3Format", "FBFormat", "extensionOn"], result => {
     document.querySelectorAll("h4.heading > a:first-child")
     .forEach((a) => {
       let number = a.getAttribute("href").replace("works", "");
-      let title = a.innerText;
-      let url = "https://archiveofourown.org/downloads" + number + "\/" + title + "\." + Ao3Format;
+      let url = "https://archiveofourown.org/downloads" + number + "\/" + "download" + "\." + Ao3Format;
       window.open(url, '_blank')
     })
   }
