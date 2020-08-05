@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  chrome.storage.local.get(["Ao3", "FB", "Ao3Format", "FBFormat"], result => {
+  chrome.storage.local.get(["Ao3", "FB", "Ao3Format", "FBFormat", "Ao3Downloaded", "allowAo3Reminder"], result => {
     if (result.Ao3 == true) {
       document.getElementById("Ao3").checked = true;
     } else {
@@ -19,6 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (result.FBFormat != undefined) {
       document.querySelector("#FB-format > label:nth-child(" + result.FBFormat + ") > input[type=radio]").checked = true;
     }
+
+    if (result.allowAo3Reminder != false) {
+      document.getElementById("allowAo3Reminder").checked = true;
+    } else {
+      document.getElementById("allowAo3Reminder").checked = false;
+    }
+
+    document.getElementById("clearNotRemindFlags").onclick = () => {
+      let Ao3Downloaded = result.Ao3Downloaded;
+      if (Ao3Downloaded === undefined) {
+        return
+      } else if (Ao3Downloaded.length == 0) {
+        return
+      } else {
+        Ao3Downloaded = Ao3Downloaded.map((a) => {
+          a.remind = true
+          return a
+        })
+        chrome.storage.local.set({"Ao3Downloaded": Ao3Downloaded})
+    }
+  }
+
   })
 
   document.getElementById("Ao3").onchange = () => {
@@ -39,5 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.set({
       "FBFormat": document.getElementById("FB-format").elements['FB-format'].value})
   }
+
+  document.getElementById("allowAo3Reminder").onchange = () => {
+  chrome.storage.local.set({
+    "allowAo3Reminder": document.getElementById("allowAo3Reminder").checked})
+  }
+
+  document.getElementById("deleteFicData").onclick = () => {
+    chrome.storage.local.set({"Ao3Downloaded": []})
+  }
+
+
+
 
 })
