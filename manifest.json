@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Fanfic downloader",
   "description": "Extension to automatically download fanfic file when fanfic page opens on Ao3 or ficbook.net",
-  "version": "1.4",
+  "version": "1.4.2",
   "browser_action":
   {
     "default_popup": "popup.html",
