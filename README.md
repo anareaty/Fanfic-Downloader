@@ -1,8 +1,8 @@
 # Fanfic-Downloader
 
-[download](https://github.com/anareaty/Fanfic-Downloader/archive/master.zip)
+Скачать расширение: [download](https://github.com/anareaty/Fanfic-Downloader/archive/master.zip)
 
-Расширение для браузера Chrome. Позволяет скачивать фанфики с сайтов Ao3 и "Книга фанфиков", по несколько файлов за один клик.
+Расширение для браузеров Chrome и Opera. Позволяет скачивать фанфики с сайтов Ao3 и "Книга фанфиков", по несколько файлов за один клик.
 
 Установка:
 - Скачать файл и разархивировать в любую папку.
