@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+
   let onOff = document.getElementById("onOff");
 
   let toggle = (a) => {
@@ -29,17 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
    }
 
   document.getElementById('downloadAll').onclick = () => {
-    chrome.tabs.executeScript({
-      file: "massdownload.js"
+    chrome.tabs.query({active: true, lastFocusedWindow: true}, (tabs) => {
+      chrome.scripting.executeScript({
+        target: {tabId: tabs[0].id},
+        files: ["massdownload.js"]
+      });
     });
   };
-
- 
- 
-     
-  
-
-
-
 
 });

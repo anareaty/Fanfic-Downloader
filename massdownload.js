@@ -1,11 +1,9 @@
+console.log("hhh")
+
 chrome.storage.local.get(["Ao3Format", "extensionOn"], result => {
   if (result.extensionOn != false) {
 
-  
-  
-
-
-  let Ao3Formats = {1: "azw3", 2: "epub", 3: "mobi", 4: "pdf", 5: "html"}
+  let Ao3Formats = {1: "azw3", 2: "epub", 3: "mobi", 4: "pdf", 5: "html"};
   let Ao3Format = Ao3Formats[result.Ao3Format];
   if (Ao3Format === undefined) Ao3Format = "epub";
 
@@ -18,10 +16,5 @@ chrome.storage.local.get(["Ao3Format", "extensionOn"], result => {
     })
   }
 
-  
-      
-
-
-
-}
+ }
 });
