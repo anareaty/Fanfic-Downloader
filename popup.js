@@ -34,11 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  document.getElementById('downloadUpdates').onclick = () => {
-    chrome.tabs.executeScript({
-      file: "downloadUpdates.js"
-    });
-  };
+ 
+ 
+     
+  
+
 
 
 
