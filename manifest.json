@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "Fanfic downloader",
-  "description": "Extension to automatically download fanfic file when fanfic page opens on Ao3 or ficbook.net",
-  "version": "1.4.2",
+  "description": "Extension to automatically download fanfic file when fanfic page opens on Ao3",
+  "version": "1.5.0",
   "browser_action":
   {
     "default_popup": "popup.html",
@@ -10,10 +10,10 @@
   },
   "content_scripts": [
   {
-    "matches": ["https://archiveofourown.org/*", "https://www.archiveofourown.org/*", "https://ficbook.net/*"],
+    "matches": ["https://archiveofourown.org/*", "https://www.archiveofourown.org/*"],
     "js": ["content.js"]
   }],
 
-  "permissions": ["storage", "tabs", "https://archiveofourown.org/*", "https://www.archiveofourown.org/*", "https://ficbook.net/*"],
+  "permissions": ["storage", "tabs", "https://archiveofourown.org/*", "https://www.archiveofourown.org/*"],
   "options_page": "options.html"
 }
