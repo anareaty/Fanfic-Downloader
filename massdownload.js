@@ -1,5 +1,3 @@
-console.log("hhh")
-
 chrome.storage.local.get(["Ao3Format", "extensionOn"], result => {
   if (result.extensionOn != false) {
 
@@ -12,7 +10,7 @@ chrome.storage.local.get(["Ao3Format", "extensionOn"], result => {
     .forEach((a) => {
       let number = a.getAttribute("href").replace("works", "");
       let url = "https://archiveofourown.org/downloads" + number + "\/" + "download" + "\." + Ao3Format;
-      window.open(url, '_blank')
+      let myWindow = window.open(url, '_blank')
     })
   }
 
