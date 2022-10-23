@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Fanfic downloader",
-  "description": "Extension to automatically download fanfic files from Ao3",
-  "version": "1.5.0",
+  "description": "Extension to automatically download fanfics from Ao3 or bookmark them",
+  "version": "1.5.1",
   "action":
   {
     "default_popup": "popup.html",

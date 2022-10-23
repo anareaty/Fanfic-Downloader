@@ -13,48 +13,30 @@ chrome.storage.local.get(["Ao3", "Ao3Format", "extensionOn", "bookmarks"], resul
 
     // Добавление в закладки при открытии страницы
     if (result.bookmarks == true) {
-
       // Добавляем закладку
       if (/archiveofourown\.org\/works.*/.test(location.href)) {
-          let bookmarkButton = document.getElementsByClassName("bookmark_form_placement_open")[0]
-          if (bookmarkButton.innerHTML == "Bookmark") {
-            // Закладки на этот фик ещё нет
-            // Нажимаем на кнопки для добавления закладки
-            bookmarkButton.click();
-            let submitButton = document.querySelector("#bookmark-form > form > fieldset > fieldset > p > input")
-            submitButton.form.submit()
-          } else {
-            // Закладка уже добавлена
-            // Закрываем вкладку, если она открыта через массовое добавление и не заблокирована
-            if (window.closable && !/Retry later/.test(document.querySelector('body').innerText)) window.close();
-            // Если вкладка открыта вручную, ничего не делаем
-          }
-        }
-
-
-        // Закрываем страницу после добавления закладки или перенаправляем назад к фанфику
-        if (/archiveofourown\.org\/bookmarks\/\d.*/.test(location.href)) {
-          if (!/Retry later/.test(document.querySelector('body').innerText)) {
-            window.close()
-          }
-
-
-
-        //        if (true) {
-        //          if (window.closable) {
-        //            window.close()
-        //          } else {
-        //            window.history.back()
-        //            let ficLink = document.querySelector("div.header.module > h4 > a");
-        //            ficLink.click();
-        //          }
-        //        }
-
-
-
-        }
+        let bookmarkButton = document.getElementsByClassName("bookmark_form_placement_open")[0]
+        if (bookmarkButton.innerHTML == "Bookmark") {
+          // Закладки на этот фик ещё нет
+          // Нажимаем на кнопки для добавления закладки
+          bookmarkButton.click();
+          let submitButton = document.querySelector("#bookmark-form > form > fieldset > fieldset > p > input")
+          submitButton.form.submit()
+          // Если этот фик уже есть в закладках, закрываем вкладку
+        } else if (window.opener != null && !/Retry later/.test(document.querySelector('body').innerText)) window.close();
       }
 
-
+      // Обрабатываем страницу после добавления закладки
+      if (/archiveofourown\.org\/bookmarks\/\d.*/.test(location.href) && !/Retry later/.test(document.querySelector('body').innerText)) {
+        if (window.opener != null) {
+          // Если вкладка открыта через массовое добавление, закрываем её
+          window.close()
+        } else {
+          // Если вкладка открыта вручную, перенаправляем обратно к фанфику
+          let ficLink = document.querySelector("div.header.module > h4 > a");
+          ficLink.click();
+        }
+      }
+    }
   }
 });
