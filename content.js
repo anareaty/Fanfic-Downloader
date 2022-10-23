@@ -1,5 +1,4 @@
 chrome.storage.local.get(["Ao3", "Ao3Format", "extensionOn", "bookmarks"], result => {
-alert (window.closable)
   if (result.extensionOn != false) {
 
     // Скачивание файла при открытии страницы
@@ -15,7 +14,7 @@ alert (window.closable)
     // Добавление в закладки при открытии страницы
     if (result.bookmarks == true) {
       // Проверяем, не заблокирована ли страница
-//      let pageBlocked = /Retry later/.test(document.querySelector('body').innerText)
+      let pageBlocked = /Retry later/.test(document.querySelector('body').innerText)
       // Добавляем закладку
       if (/archiveofourown\.org\/works.*/.test(location.href)) {
           let bookmarkButton = document.getElementsByClassName("bookmark_form_placement_open")[0]
@@ -27,8 +26,8 @@ alert (window.closable)
             submitButton.form.submit()
           } else {
             // Закладка уже добавлена
-            // Закрываем вкладку, если она открыта через массовое добавление
-            if (window.closable) window.close();
+            // Закрываем вкладку, если она открыта через массовое добавление и не заблокирована
+            if (window.closable && !pageBlocked) window.close();
             // Если вкладка открыта вручную, ничего не делаем
           }
         }
@@ -36,7 +35,10 @@ alert (window.closable)
       }
       // Закрываем страницу после добавления закладки или перенаправляем назад к фанфику
       if (/archiveofourown\.org\/bookmarks\/\d.*/.test(location.href)) {
-        window.close()
+        if (!pageBlocked) {
+          window.close()
+        }
+
 
 
 //        if (true) {
