@@ -32,28 +32,30 @@ chrome.storage.local.get(["Ao3", "Ao3Format", "extensionOn", "bookmarks"], resul
           }
         }
 
-      }
-      // Закрываем страницу после добавления закладки или перенаправляем назад к фанфику
-      if (/archiveofourown\.org\/bookmarks\/\d.*/.test(location.href)) {
-        if (!pageBlocked) {
-          window.close()
+
+        // Закрываем страницу после добавления закладки или перенаправляем назад к фанфику
+        if (/archiveofourown\.org\/bookmarks\/\d.*/.test(location.href)) {
+          if (!pageBlocked) {
+            window.close()
+          }
+
+
+
+        //        if (true) {
+        //          if (window.closable) {
+        //            window.close()
+        //          } else {
+        //            window.history.back()
+        //            let ficLink = document.querySelector("div.header.module > h4 > a");
+        //            ficLink.click();
+        //          }
+        //        }
+
+
+
         }
+      }
 
-
-
-//        if (true) {
-//          if (window.closable) {
-//            window.close()
-//          } else {
-//            window.history.back()
-//            let ficLink = document.querySelector("div.header.module > h4 > a");
-//            ficLink.click();
-//          }
-//        }
-
-
-
-    }
 
   }
 });
